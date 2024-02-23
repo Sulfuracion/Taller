@@ -1,0 +1,123 @@
+create table usuario (
+	id serial primary key,
+	nombre varchar(50) NOT NULL,
+	pass varchar(70) NOT NULL,
+	nomina NUMERIC(10, 2) NOT NULL,
+	horario int
+)-- precision es el número total de dígitos y scale es el número de dígitos después del punto decimal.
+
+
+-- Insertar un nuevo mecánico
+INSERT INTO usuario (nombre, pass, nomina, horario)
+VALUES ('Nombre Mecánico', 'contraseña_mecanico', 2500.00, 0);
+
+INSERT INTO mecanico (seguro, id)
+VALUES ('a terceros', currval('usuario_id_seq'));
+
+
+-- Insertar un nuevo administrativo
+INSERT INTO usuario (nombre, pass, nomina, horario)
+VALUES ('Nombre Administrativo', 'contraseña_administrativo', 3000.00, 0);
+
+INSERT INTO administrador (TLFCorporativo, id)
+VALUES ('1234567890', currval('usuario_id_seq'));
+
+
+
+
+
+create table administrador(
+	TLFCorporativo varchar(10),
+	constraint adminID foreign key(id) references usuario(id)
+
+)inherits(usuario);
+
+create table clientes(
+	id serial primary key,
+	nombre varchar(20),
+	tlfo varchar(10),
+	direccion varchar(100)
+)
+
+
+create type tipoSeguro as enum ('a terceros', 'todo riesgo');
+create table mecanico(
+	seguro tipoSeguro,
+	constraint mecanicoID foreign key(id) references usuario(id)
+)inherits(usuario);
+
+
+
+
+create type tipoEstado as enum ('finalizado', 'en proceso', 'sin empezar')
+CREATE TABLE repara (
+    idReparacion SERIAL PRIMARY KEY,
+    fecha DATE not null,
+   	id_mecanico INT NOT NULL,
+    CONSTRAINT fk_mecanico_reparar FOREIGN KEY (id_mecanico) REFERENCES usuario (id)
+)
+
+
+create type tipoTransmision as enum ('manual', 'automatico')
+create type fichaTecnicaTipo as(
+	potenciaCV int,
+	transmision tipoTransmision	
+)
+
+
+create type tipoMarcar as enum ('audi', 'mercedes', 'seat', 'porche')
+create table vehiculos(
+	matricula varchar(8) primary key,
+	fichaTenica fichaTecnicaTipo,
+	marca tipoMarcar,
+	modelo varchar(20),
+	seguro tipoSeguro	
+)
+
+
+
+create table coches(
+	puertas int,
+	software char,
+	constraint cochesID foreign key(matricula) references vehiculos(matricula)
+
+)inherits(vehiculos);
+
+
+
+create table motos(
+	tiempos int,
+	maleta boolean,
+	constraint motosID foreign key(matricula) references vehiculos(matricula)
+)inherits(vehiculos);
+
+
+--simula el inicio de la jornada laboral
+CREATE OR REPLACE FUNCTION iniciarJornadaLaboral()
+RETURNS void AS
+$$
+BEGIN
+    UPDATE usuario SET horario = 0;
+END;
+$$
+LANGUAGE plpgsql;
+
+--simula el final de la jornada laboral
+CREATE OR REPLACE FUNCTION finalizarJornadaLaboral()
+RETURNS void AS
+$$
+BEGIN
+    UPDATE usuario SET horario = 8;
+END;
+$$
+LANGUAGE plpgsql;
+
+
+
+
+
+
+
+
+
+
