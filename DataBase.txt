@@ -113,6 +113,27 @@ $$
 LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION horasPendientes(codservicio INTEGER, codmecanico INTEGER) RETURNS INTEGER AS $$
+DECLARE
+    horasm INTEGER;
+    horasserv INTEGER;
+BEGIN
+    -- Obtiene las horas actuales del mecánico
+    SELECT horas INTO horasm FROM mecanico WHERE id = codmecanico;
+
+    -- Obtiene el tiempo estimado para el servicio
+    SELECT tiempo INTO horasserv FROM servicios WHERE idservicio = codservicio;
+
+    -- Calcula si las horas pendientes superan el límite de 20 horas
+    IF (horasm + horasserv) > 20 THEN
+        RETURN 0;
+    ELSE 
+        RETURN (horasm + horasserv);
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+
 
 
 

@@ -4,6 +4,7 @@
  */
 package com.mycompany.taller;
 
+import static com.mycompany.taller.DataBaseControlador.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,14 +22,24 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         mostrar();
+        setLocationRelativeTo(null);
+        setTitle("Clientes");
+        SobreEscribirButton.setVisible(false);
+     
         
     }
     DataBaseControlador db= new DataBaseControlador();
+    Connection conn = db.conexionDB("miTaller", "root", "123");
+     
     
+    public void limpiar(){
+        NombreTextField.setText("");
+        DireccionTextField.setText("");     
+        TLFOTextField.setText("");         
+     }
     
         
     public void mostrar(){
-        Connection conn = db.conexionDB("miTaller", "root", "123");
         // Ajusta la consulta SQL a la estructura de tu tabla clientes
         String sql = "SELECT * FROM clientes";
         Statement st;
@@ -67,18 +78,11 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel3 = new javax.swing.JLabel();
         LimpiarButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        ReporteButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        MatriculaTextField = new javax.swing.JTextField();
-        SiRadioButton = new javax.swing.JRadioButton();
+        DireccionTextField = new javax.swing.JTextField();
         NombreTextField = new javax.swing.JTextField();
-        NoRadioButton = new javax.swing.JRadioButton();
-        HombreRadioButton = new javax.swing.JRadioButton();
         SobreEscribirButton = new javax.swing.JButton();
-        MujerRadioButton = new javax.swing.JRadioButton();
-        CorreoTextField = new javax.swing.JTextField();
+        TLFOTextField = new javax.swing.JTextField();
         GuardarButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ClienteTabla = new javax.swing.JTable();
@@ -86,53 +90,39 @@ public class Principal extends javax.swing.JFrame {
         ModificarButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         EliminarButton = new javax.swing.JButton();
+        MostrarTrabajdoresButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel3.setText("Nombre");
 
         LimpiarButton.setText("Limpiar");
-        LimpiarButton.setPreferredSize(new java.awt.Dimension(80, 20));
-
-        jLabel5.setText("Sexo");
-
-        ReporteButton.setText("Reporte");
-        ReporteButton.setPreferredSize(new java.awt.Dimension(80, 20));
-        ReporteButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ReporteButtonMouseClicked(evt);
-            }
-        });
-
-        jLabel6.setText("Correo");
-
-        jLabel4.setText("Activo");
-
-        MatriculaTextField.addActionListener(new java.awt.event.ActionListener() {
+        LimpiarButton.setPreferredSize(new java.awt.Dimension(117, 23));
+        LimpiarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MatriculaTextFieldActionPerformed(evt);
+                LimpiarButtonActionPerformed(evt);
             }
         });
 
-        SiRadioButton.setSelected(true);
-        SiRadioButton.setText("Si");
+        jLabel6.setText("Telefono");
 
-        NoRadioButton.setText("No");
-
-        HombreRadioButton.setSelected(true);
-        HombreRadioButton.setText("Hombre");
+        DireccionTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DireccionTextFieldActionPerformed(evt);
+            }
+        });
 
         SobreEscribirButton.setText("SobreEscribir");
+        SobreEscribirButton.setPreferredSize(new java.awt.Dimension(117, 23));
         SobreEscribirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SobreEscribirButtonActionPerformed(evt);
             }
         });
 
-        MujerRadioButton.setText("Mujer");
-
         GuardarButton.setText("Guardar");
-        GuardarButton.setPreferredSize(new java.awt.Dimension(80, 20));
+        GuardarButton.setPreferredSize(new java.awt.Dimension(117, 23));
         GuardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuardarButtonActionPerformed(evt);
@@ -141,169 +131,172 @@ public class Principal extends javax.swing.JFrame {
 
         ClienteTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "null", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(ClienteTabla);
 
-        jLabel1.setText("Datos alumno");
+        jLabel1.setText("Datos Cliente");
 
         ModificarButton.setText("Modificar");
-        ModificarButton.setPreferredSize(new java.awt.Dimension(80, 20));
+        ModificarButton.setPreferredSize(new java.awt.Dimension(117, 23));
         ModificarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModificarButtonActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("CodMatricula");
+        jLabel2.setText("Direccion");
 
         EliminarButton.setText("Eliminar");
-        EliminarButton.setPreferredSize(new java.awt.Dimension(80, 20));
+        EliminarButton.setPreferredSize(new java.awt.Dimension(117, 23));
         EliminarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EliminarButtonActionPerformed(evt);
             }
         });
 
+        MostrarTrabajdoresButton.setText("Ver Trabajadores");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setText("Clientes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGap(141, 141, 141)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(NombreTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                                    .addComponent(MatriculaTextField)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(101, 101, 101)
-                                .addComponent(HombreRadioButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(MujerRadioButton)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(GuardarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                            .addComponent(EliminarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ModificarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(SiRadioButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(NoRadioButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(CorreoTextField)
-                                .addGap(232, 232, 232)
-                                .addComponent(ReporteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LimpiarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(447, 447, 447)
-                                .addComponent(SobreEscribirButton)))))
-                .addGap(125, 125, 125))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TLFOTextField)
+                            .addComponent(NombreTextField)
+                            .addComponent(DireccionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(368, 368, 368)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(EliminarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ModificarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(GuardarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SobreEscribirButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MostrarTrabajdoresButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LimpiarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(130, 130, 130))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(106, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(SobreEscribirButton))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jLabel3))
+                            .addComponent(NombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(MatriculaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(GuardarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ModificarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EliminarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(HombreRadioButton)
-                        .addComponent(MujerRadioButton)))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                            .addComponent(jLabel2)
+                            .addComponent(DireccionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(CorreoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(TLFOTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(SobreEscribirButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(GuardarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ModificarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EliminarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LimpiarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ReporteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(SiRadioButton)
-                    .addComponent(NoRadioButton))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(MostrarTrabajdoresButton)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ReporteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReporteButtonMouseClicked
- 
-    }//GEN-LAST:event_ReporteButtonMouseClicked
-
-    private void MatriculaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MatriculaTextFieldActionPerformed
+    private void DireccionTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MatriculaTextFieldActionPerformed
+    }//GEN-LAST:event_DireccionTextFieldActionPerformed
 
     private void SobreEscribirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SobreEscribirButtonActionPerformed
-      
+        // Obtiene el valor como String y luego convierte a int
+        String idClienteStr = ClienteTabla.getValueAt(ClienteTabla.getSelectedRow(), 0).toString();
+        int idCliente = Integer.parseInt(idClienteStr);
+
+        
+        actualizarCliente(conn, idCliente, NombreTextField.getText(), DireccionTextField.getText(), TLFOTextField.getText());
+        limpiar();
+        mostrar();    
+
     }//GEN-LAST:event_SobreEscribirButtonActionPerformed
 
     private void GuardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarButtonActionPerformed
-    insertarCliente();   
-    
+        insertarCliente(conn,NombreTextField.getText(), DireccionTextField.getText(),TLFOTextField.getText());
+        limpiar();
+        mostrar();    
     }//GEN-LAST:event_GuardarButtonActionPerformed
 
     private void ModificarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarButtonActionPerformed
-       
+        // Asumiendo que 'ClienteTabla' es tu JTable
+        int selectedRowIndex = ClienteTabla.getSelectedRow();
+
+        if (selectedRowIndex >= 0) {// Hay una fila seleccionada
+            SobreEscribirButton.setVisible(true);
+            ModificarButton.setEnabled(false);
+            NombreTextField.setText((String) ClienteTabla.getValueAt(ClienteTabla.getSelectedRow(), 1));
+            DireccionTextField.setText((String) ClienteTabla.getValueAt(ClienteTabla.getSelectedRow(), 2));
+            TLFOTextField.setText((String) ClienteTabla.getValueAt(ClienteTabla.getSelectedRow(), 3));            
+            
+        } else {
+            
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona una fila primero.");
+        }
     }//GEN-LAST:event_ModificarButtonActionPerformed
 
     private void EliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarButtonActionPerformed
-      
+     // Obteniendo el ID del cliente seleccionado como un String y convirtiéndolo a int
+    int idCliente = Integer.parseInt((String) ClienteTabla.getValueAt(ClienteTabla.getSelectedRow(), 0));
+    
+    borrarClientePorId(conn, idCliente);
+    mostrar();  
     }//GEN-LAST:event_EliminarButtonActionPerformed
+
+    private void LimpiarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarButtonActionPerformed
+        limpiar();
+    }//GEN-LAST:event_LimpiarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -342,24 +335,19 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable ClienteTabla;
-    private javax.swing.JTextField CorreoTextField;
+    private javax.swing.JTextField DireccionTextField;
     private javax.swing.JButton EliminarButton;
     private javax.swing.JButton GuardarButton;
-    private javax.swing.JRadioButton HombreRadioButton;
     private javax.swing.JButton LimpiarButton;
-    private javax.swing.JTextField MatriculaTextField;
     private javax.swing.JButton ModificarButton;
-    private javax.swing.JRadioButton MujerRadioButton;
-    private javax.swing.JRadioButton NoRadioButton;
+    private javax.swing.JButton MostrarTrabajdoresButton;
     private javax.swing.JTextField NombreTextField;
-    private javax.swing.JButton ReporteButton;
-    private javax.swing.JRadioButton SiRadioButton;
     private javax.swing.JButton SobreEscribirButton;
+    private javax.swing.JTextField TLFOTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

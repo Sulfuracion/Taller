@@ -25,7 +25,7 @@ public class DataBaseControlador {
     public static void insertarCliente(Connection conn, String nombre, String direccion, String telefono) {
         try {
             // Preparar la consulta SQL para insertar un nuevo cliente
-            String sql = "INSERT INTO cliente (nombre, direccion, telefono) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO clientes(nombre, tlfo, direccion) VALUES (?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             // Establecer los valores de los parámetros
@@ -47,6 +47,58 @@ public class DataBaseControlador {
         }
     }
     
+    
+     public static void borrarClientePorId(Connection conn, int idCliente) {
+        try {
+            // Preparar la consulta SQL para borrar un cliente por su ID
+            String sql = "DELETE FROM clientes WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            // Establecer el valor del parámetro ID
+            pstmt.setInt(1, idCliente);
+
+            // Ejecutar la consulta
+            int filasBorradas = pstmt.executeUpdate();
+
+            // Verificar si se borró correctamente
+            if (filasBorradas > 0) {
+                System.out.println("Cliente con ID " + idCliente + " borrado correctamente.");
+            } else {
+                System.out.println("No se encontró ningún cliente con ID " + idCliente + ".");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al borrar cliente: " + e.getMessage());
+        }
+    }
+    
+    public static void actualizarCliente(Connection conn, int idCliente, String nombre, String direccion, String telefono) {
+        try {
+            // Preparar la consulta SQL para actualizar un cliente por su ID
+            String sql = "UPDATE clientes SET nombre = ?, direccion = ?, tlfo = ? WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            // Establecer los valores de los parámetros
+            pstmt.setString(1, nombre);
+            pstmt.setString(2, direccion);
+            pstmt.setString(3, telefono);
+            pstmt.setInt(4, idCliente); // El ID no se modifica, se utiliza en la cláusula WHERE
+
+            // Ejecutar la consulta
+            int filasActualizadas = pstmt.executeUpdate();
+
+            // Verificar si se actualizó correctamente
+            if (filasActualizadas > 0) {
+                System.out.println("Cliente con ID " + idCliente + " actualizado correctamente.");
+            } else {
+                System.out.println("No se encontró ningún cliente con ID " + idCliente + ".");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar cliente: " + e.getMessage());
+        }
+    }
+    
+    
+  
     
     
     
