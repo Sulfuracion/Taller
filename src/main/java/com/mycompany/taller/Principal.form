@@ -24,46 +24,54 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="TLFOTextField" max="32767" attributes="0"/>
-                          <Component id="NombreTextField" max="32767" attributes="0"/>
-                          <Component id="DireccionTextField" min="-2" pref="162" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="368" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="EliminarButton" alignment="1" max="32767" attributes="0"/>
-                      <Component id="ModificarButton" alignment="1" max="32767" attributes="0"/>
-                      <Component id="GuardarButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="SobreEscribirButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="MostrarTrabajdoresButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="LimpiarButton" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="106" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="659" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" pref="109" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="TLFOTextField" max="32767" attributes="0"/>
+                                  <Component id="NombreTextField" max="32767" attributes="0"/>
+                                  <Component id="DireccionTextField" min="-2" pref="162" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="368" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="EliminarButton" alignment="1" max="32767" attributes="0"/>
+                              <Component id="ModificarButton" alignment="1" max="32767" attributes="0"/>
+                              <Component id="GuardarButton" alignment="0" max="32767" attributes="0"/>
+                              <Component id="SobreEscribirButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="MostrarTrabajdoresButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="LimpiarButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -111,7 +119,9 @@
                       <Component id="MostrarTrabajdoresButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <EmptySpace pref="7" max="32767" attributes="0"/>
+              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -126,7 +136,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpiar"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[117, 23]"/>
+          <Dimension value="[123, 23]"/>
         </Property>
       </Properties>
       <Events>
@@ -149,7 +159,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="SobreEscribir"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[117, 23]"/>
+          <Dimension value="[123, 23]"/>
         </Property>
       </Properties>
       <Events>
@@ -162,7 +172,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[117, 23]"/>
+          <Dimension value="[123, 23]"/>
         </Property>
       </Properties>
       <Events>
@@ -200,7 +210,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[117, 23]"/>
+          <Dimension value="[123, 23]"/>
         </Property>
       </Properties>
       <Events>
@@ -216,7 +226,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[117, 23]"/>
+          <Dimension value="[123, 23]"/>
         </Property>
       </Properties>
       <Events>
@@ -226,7 +236,13 @@
     <Component class="javax.swing.JButton" name="MostrarTrabajdoresButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ver Trabajadores"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[123, 23]"/>
+        </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MostrarTrabajdoresButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -235,6 +251,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Clientes"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Crear un veh&#xed;culo"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

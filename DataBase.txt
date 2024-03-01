@@ -73,6 +73,12 @@ create table vehiculos(
 	modelo varchar(20),
 	seguro tipoSeguro	
 )
+INSERT INTO vehiculos (matricula, fichaTenica, marca, modelo, seguro)
+VALUES 
+    ('1234ABC', ROW(150, 'manual')::fichaTecnicaTipo, 'audi', 'A3', 'a terceros'),
+    ('5678DEF', ROW(200, 'automatico')::fichaTecnicaTipo, 'mercedes', 'Clase C', 'todo riesgo'),
+    ('9101GHI', ROW(180, 'manual')::fichaTecnicaTipo, 'seat', 'Ibiza', 'a terceros'),
+    ('1221JKL', ROW(250, 'automatico')::fichaTecnicaTipo, 'porche', '911', 'todo riesgo');
 
 
 

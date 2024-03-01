@@ -21,6 +21,35 @@ public class DataBaseControlador {
         return conn;
     }
     
+     public static void insertarVehiculo(Connection conn, String matricula, int potenciaCV, String transmision, String marca, String modelo, String seguro) {
+        try {
+            // Preparar la consulta SQL para insertar un nuevo vehículo
+            // PostgreSQL permite el uso de la notación de fila para insertar en un tipo compuesto
+            String sql = "INSERT INTO vehiculos(matricula, fichaTenica, marca, modelo, seguro) VALUES (?, ROW(?, ?)::fichaTecnicaTipo, ?, ?, ?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            // Establecer los valores de los parámetros
+            pstmt.setString(1, matricula);
+            pstmt.setInt(2, potenciaCV); // Parte de la ficha técnica
+            pstmt.setString(3, transmision); // Parte de la ficha técnica, asegúrate de que coincide con los valores del ENUM
+            pstmt.setString(4, marca); // Asegúrate de que coincide con los valores del ENUM
+            pstmt.setString(5, modelo);
+            pstmt.setString(6, seguro); // Asegúrate de que coincide con los valores del ENUM
+
+            // Ejecutar la consulta
+            int filasInsertadas = pstmt.executeUpdate();
+
+            // Verificar si se insertó correctamente
+            if (filasInsertadas > 0) {
+                System.out.println("Vehículo insertado correctamente.");
+            } else {
+                System.out.println("Error al insertar vehículo.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al insertar vehículo: " + e.getMessage());
+        }
+    }
+    
     
     public static void insertarCliente(Connection conn, String nombre, String direccion, String telefono) {
         try {

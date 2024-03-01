@@ -4,6 +4,8 @@
  */
 package com.mycompany.taller;
 
+import java.sql.Connection;
+
 /**
  *
  * @author Usuario
@@ -16,6 +18,9 @@ public class Trabajadores extends javax.swing.JFrame {
     public Trabajadores() {
         initComponents();
     }
+     DataBaseControlador db= new DataBaseControlador();
+     Connection conn = db.conexionDB("miTaller", "root", "123");
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
